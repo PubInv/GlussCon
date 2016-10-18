@@ -6,6 +6,7 @@ title: GlussCon -- A Gluss Controller
 
 # GlussCon
 
+
 This is a project of Public Invenstion in support of [The Gluss Project](http://pubinv.github.io/gluss/), a radical approach to robotics trying
 to build a general purpose metamorphic machine. Like all Public Invention projects, it is completely open-source and does not seek patents.
 
