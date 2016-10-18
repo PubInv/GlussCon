@@ -39,8 +39,11 @@ If mechanically satisfactory, we intend to use a MUX chip controlled by an Ardui
 # How to Contribute
 
 We welcome your participation, in either the GlussCon project, the Gluss project, or one of the other Public Invention projects.
-You are welcome to email Rob <read.robert@gmail.com> to discuss how you can help the GlussCon project.
-However, as a public project, it is even better for you to comment publicly.
+To discuss the GlussCon project specifically, email Joshua Hannan 
+<hannanjoshua19@gmail.com> (Github: [joshuahannah](https://github.com/joshuahannan)). You are welcome to email Robert L. Read <read.robert@gmail.com> to discuss how you can help the Public Invention projects in general.
+
+However, as a public projects, it is even better for you to comment publicly
+on these projects.
 You can do this by opening an ("issue")[https://github.com/PubInv/PubInv/issues] here at GitHub.  If you want to add to or improve one of the existing documents, you can do this with a "pull request".
 
 You may wish to subscribe to our <a href="https://www.youtube.com/watch?v=1T8XSMhwKUE">YouTube Channel</a>. Since we are bound neither by the need to keep something secret due to patent restrictions imposed by Universities, nor by the formality of Academic publishing, nor by the need to maintain trade secrets, we publish informally a lot at YouTube.
