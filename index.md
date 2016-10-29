@@ -7,7 +7,7 @@ title: GlussCon -- A Gluss Controller
 # GlussCon
 
 
-This is a project of Public Invenstion in support of [The Gluss Project](http://pubinv.github.io/gluss/), a radical approach to robotics trying
+This is a project of Public Invention in support of [The Gluss Project](http://pubinv.github.io/gluss/), a radical approach to robotics trying
 to build a general purpose metamorphic machine. Like all Public Invention projects, it is completely open-source and does not seek patents.
 
 The Gluss Controller, or GlussCon, explores the possibility of building a hand-manipulable controller which is a puppet or doll--a miniature version of
@@ -25,15 +25,21 @@ linear potentiometer.  The connectors will join to the turret joints produced at
 corresponding precisely in shape (but in miniature) to a GlussBot geometry.  The current position will be transmitted via Bluetooth of WIFI to
 the computer controller the GlussBot.
 
-At present, we have purchased Linear Potentiometers, practices reading their values, and designed but not printed, a moving enclosure.
-Some additional 3D design work is needed to allow connections to the "rotors" of the Turret joints.
+At present, we have purchased Linear Potentiometers, practices reading their values, and designed and printed a moving enclosure. Basically
+we have a single Tetrahedron almost ready:
+
+<img width="60%" src="./images/GlussConTet.jpg"/>
+
 
 # Plans
 
-When we have worked out these CAD modeling, we will begin 3D printing of the joints, rotors, and encosures and attempt to assemble first a
-single triangle, then a tetrahedron, then a complete 5-Tet GlussBot, the current Gluss model.
 
-If mechanically satisfactory, we intend to use a MUX chip controlled by an Arduino to read the positions of the potentiometers.
+We intend to use a MUX chip controlled by an Arduino to read the positions of the potentiometers. We will likely use
+either an Arduino or a Raspberry Pi as the controller to transmit data via WIFI.
+
+Our hope is to keep the GlussCon independent of the GlussBot, even though its main purpose is to controll the GlussBot.
+For example, we (and you, the hobbyist who wants to duplicate our open-source work) may implement a "fader box"
+or an equalizer with the same technology. (Those application don't require the "glussy" geometry.0
 
 
 # How to Contribute
