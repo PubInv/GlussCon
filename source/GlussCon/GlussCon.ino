@@ -1,3 +1,4 @@
+
 //////////////////////
 // Library Includes //
 //////////////////////
@@ -11,8 +12,8 @@
 //////////////////////////////
 // Replace these two character strings with the name and
 // password of your WiFi network.
-const char mySSID[] = "Loading...";
-const char myPSK[] = "tittycity";
+const char mySSID[] = "readfamilynetwork";
+const char myPSK[] = "magicalsparrow96";
 
 //////////////////////////////
 // ESP8266Server definition //
@@ -26,7 +27,7 @@ ESP8266Server server = ESP8266Server(80);
 // HTTP Strings //
 //////////////////
 const char destServer[] = "example.com";
-const String htmlHeader = "HTTP/1.1 200 OK\r\n"
+const String  = "HTTP/1.1 200 OK\r\n"
                           "Content-Type: text/html\r\n"
                           "Connection: close\r\n\r\n"
                           "<!DOCTYPE HTML>\r\n"
@@ -39,15 +40,32 @@ const String httpRequest = "GET / HTTP/1.1\n"
                            
 // Contstant definitions
 int POTPIN = A0;             // analog pins used for the potentiometer
-int NUM_POTS = 3;            // number of potentiometers in the design
-int MUX_SEL[] = {5,3};       // digital outputs pins for selecting a mux line
 
+int NUM_POTS = 6;            // number of potentiometers in the design
+// int MUX_SEL[] = {5,3};       // digital outputs pins for selecting a mux line
+
+//Mux control pins
+int s0 = 2;
+int s1 = 3;
+int s2 = 4;
+int s3 = 5;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(MUX_SEL[0], OUTPUT);
-  pinMode(MUX_SEL[1], OUTPUT);
+//  pinMode(MUX_SEL[0], OUTPUT);
+//  pinMode(MUX_SEL[1], OUTPUT);
 
+
+  pinMode(s0, OUTPUT); 
+  pinMode(s1, OUTPUT); 
+  pinMode(s2, OUTPUT); 
+  pinMode(s3, OUTPUT); 
+
+  digitalWrite(s0, LOW);
+  digitalWrite(s1, LOW);
+  digitalWrite(s2, LOW);
+  digitalWrite(s3, LOW);
+  
   pinMode(13,OUTPUT);
 
     // Serial Monitor is used to control the demo and view
@@ -77,7 +95,7 @@ void setup() {
  *                 to the GLUSSBOT
  */
 void loop() {
-  server();  
+  serverDemo();  
 }
 
 /******************************************
@@ -85,19 +103,98 @@ void loop() {
  *    Description: reads the value from the 
  *    specified potentiometer.
  */
-int readpot(int potnum) {
-  if (potnum == 0) {
-      digitalWrite(MUX_SEL[0], LOW);
-      digitalWrite(MUX_SEL[1], LOW);
-  } else if (potnum == 1) {
-      digitalWrite(MUX_SEL[0], HIGH);
-      digitalWrite(MUX_SEL[1], LOW);
-  } else if (potnum == 2) {
-      digitalWrite(MUX_SEL[0], LOW);
-      digitalWrite(MUX_SEL[1], HIGH);
+//int readpot(int potnum) {
+//  if (potnum == 0) {
+//      digitalWrite(MUX_SEL[0], LOW);
+//      digitalWrite(MUX_SEL[1], LOW);
+//  } else if (potnum == 1) {
+//      digitalWrite(MUX_SEL[0], HIGH);
+//      digitalWrite(MUX_SEL[1], LOW);
+//  } else if (potnum == 2) {
+//      digitalWrite(MUX_SEL[0], LOW);
+//      digitalWrite(MUX_SEL[1], HIGH);
+//  }
+//  
+//  return analogRead(POTPIN);
+//}
+
+//Mux control pins
+//int s0 = 8;
+//int s1 = 9;
+//int s2 = 10;
+//int s3 = 11;
+
+//Mux in "SIG" pin
+int SIG_pin = 0;
+
+//
+//void setup(){
+//  pinMode(s0, OUTPUT); 
+//  pinMode(s1, OUTPUT); 
+//  pinMode(s2, OUTPUT); 
+//  pinMode(s3, OUTPUT); 
+//
+//  digitalWrite(s0, LOW);
+//  digitalWrite(s1, LOW);
+//  digitalWrite(s2, LOW);
+//  digitalWrite(s3, LOW);
+//
+//  Serial.begin(9600);
+//}
+
+//
+//void loop(){
+//
+//  //Loop through and read all 16 values
+//  //Reports back Value at channel 6 is: 346
+//  for(int i = 0; i < 16; i ++){
+//    Serial.print("Value at channel ");
+//    Serial.print(i);
+//    Serial.print("is : ");
+//    Serial.println(readMux(i));
+//    delay(1000);
+//  }
+//
+//}
+
+
+int readMux(int channel){
+  int controlPin[] = {s0, s1, s2, s3};
+
+  int muxChannel[16][4]={
+    {0,0,0,0}, //channel 0
+    {1,0,0,0}, //channel 1
+    {0,1,0,0}, //channel 2
+    {1,1,0,0}, //channel 3
+    {0,0,1,0}, //channel 4
+    {1,0,1,0}, //channel 5
+    {0,1,1,0}, //channel 6
+    {1,1,1,0}, //channel 7
+    {0,0,0,1}, //channel 8
+    {1,0,0,1}, //channel 9
+    {0,1,0,1}, //channel 10
+    {1,1,0,1}, //channel 11
+    {0,0,1,1}, //channel 12
+    {1,0,1,1}, //channel 13
+    {0,1,1,1}, //channel 14
+    {1,1,1,1}  //channel 15
+  };
+
+  //loop through the 4 sig
+  for(int i = 0; i < 4; i ++){
+    digitalWrite(controlPin[i], muxChannel[channel][i]);
+//    Serial.print(controlPin[i]);
+ //   Serial.print(" ");
+ //   Serial.println( muxChannel[channel][i]);
   }
-  
-  return analogRead(POTPIN);
+  // Just want to give Mux time to settle on new voltage...
+  delay(10);
+
+  //read the value at the SIG pin
+  int val = analogRead(SIG_pin);
+
+  //return the value
+  return val;
 }
 
 void initializeESP8266()
@@ -193,7 +290,7 @@ void serverSetup()
   Serial.println();
 }
 
-void server()
+void serverDemo()
 {
   // available() is an ESP8266Server function which will
   // return an ESP8266Client object for printing and reading.
@@ -222,18 +319,26 @@ void server()
           client.print(htmlHeader);
           String htmlBody;
           // output the value of each analog input to the mux
-          for (int potnum = 0; potnum < NUM_POTS; potnum++)
+          htmlBody += "{ \n";
+          for (int potnum = 0; potnum < NUM_POTS ; potnum++)
           {
             // read value of the selected potentiometer
-            int dist = readpot(potnum);
-            htmlBody += "Sel ";
+            int dist = readMux(potnum);
+
+            htmlBody += String("A");
             htmlBody += String(potnum);
             htmlBody += ": ";
             htmlBody += String(dist);
-            htmlBody += "<br>\n";
+            htmlBody += ",\n";
           }
-          htmlBody += "</html>\n";
+          htmlBody += "}\n";
           client.print(htmlBody);
+//          delay(10);
+//          while (client.available()) {
+//            c = client.read();
+//            delay(10);
+//            Serial.println(c);
+//          }
           break;
         }
         if (c == '\n') 
@@ -248,12 +353,21 @@ void server()
         }
       }
     }
-    // give the web browser time to receive the data
-    delay(1);
-   
-    // close the connection:
-    client.stop();
-    Serial.println(F("Client disconnected"));
+    
+    
+//    // give the web browser time to receive the data
+//    delay(500);
+//   
+//    // close the connection:
+//    client.stop();
+//    Serial.println(F("Client disconnected"));
+//
+//      // Let's see if the client is unavailable as it should be...
+//    delay(1000);
+//    Serial.println("Are we available?");
+//    Serial.println(client.available());
+//    Serial.println("Are we connected?");
+//    Serial.println(client.connected());
   }
   
 }
