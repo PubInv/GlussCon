@@ -27,7 +27,7 @@ ESP8266Server server = ESP8266Server(80);
 // HTTP Strings //
 //////////////////
 const char destServer[] = "example.com";
-const String  = "HTTP/1.1 200 OK\r\n"
+const String  htmlHeader = "HTTP/1.1 200 OK\r\n"
                           "Content-Type: text/html\r\n"
                           "Connection: close\r\n\r\n"
                           "<!DOCTYPE HTML>\r\n"
@@ -325,13 +325,17 @@ void serverDemo()
             // read value of the selected potentiometer
             int dist = readMux(potnum);
 
-            htmlBody += String("A");
+            htmlBody += String("\"A");
             htmlBody += String(potnum);
-            htmlBody += ": ";
+            htmlBody += String("\"");
+            htmlBody += ": \"";
             htmlBody += String(dist);
-            htmlBody += ",\n";
+            htmlBody += "\"";
+            if (potnum < NUM_POTS-1) {
+              htmlBody += ",\n";
+            }
           }
-          htmlBody += "}\n";
+          htmlBody += " }\n";
           client.print(htmlBody);
 //          delay(10);
 //          while (client.available()) {
@@ -355,12 +359,12 @@ void serverDemo()
     }
     
     
-//    // give the web browser time to receive the data
-//    delay(500);
+    // give the web browser time to receive the data
+    delay(500);
 //   
-//    // close the connection:
-//    client.stop();
-//    Serial.println(F("Client disconnected"));
+    // close the connection:
+    client.stop();
+    Serial.println(F("Client disconnected"));
 //
 //      // Let's see if the client is unavailable as it should be...
 //    delay(1000);
