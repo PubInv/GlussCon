@@ -37,6 +37,7 @@ const String httpRequest = "GET / HTTP/1.1\n"
                            "Host: example.com\n"
                            "Connection: close\n\n";
 
+int NUM_REQUESTS_SERVED = 0;
                            
 // Contstant definitions
 int POTPIN = A0;             // analog pins used for the potentiometer
@@ -71,7 +72,7 @@ void setup() {
     // Serial Monitor is used to control the demo and view
   // debug information.
   Serial.begin(9600);
-  serialTrigger(F("Press any key to begin."));
+//  serialTrigger(F("Press any key to begin."));
 
   // initializeESP8266() verifies communication with the WiFi
   // shield, and sets it up.
@@ -84,7 +85,7 @@ void setup() {
   // and the network it's connected to.
   displayConnectInfo();
   
-  serialTrigger(F("Press any key to test server."));
+ // serialTrigger(F("Press any key to test server."));
   serverSetup();
 }
 
@@ -161,13 +162,24 @@ int SIG_pin = 0;
 int readMux(int channel){
   int controlPin[] = {s0, s1, s2, s3};
 
+// HACK!!! Rob screwed up the ordering of the pots,
+// and so it must be coorected here, even though this is deeply weird
+// This should be understood as a hack that should be 
   int muxChannel[16][4]={
     {0,0,0,0}, //channel 0
-    {1,0,0,0}, //channel 1
-    {0,1,0,0}, //channel 2
-    {1,1,0,0}, //channel 3
-    {0,0,1,0}, //channel 4
+    // need to swap 1 and 2
+ //   {1,0,0,0}, //channel 1
+ //   {0,1,0,0}, //channel 2
+    {0,1,0,0}, //channel 1
+    {1,0,0,0}, //channel 2
+// End of first hack
+//   {1,1,0,0}, //channel 3
+//    {0,0,1,0}, //channel 4
+//    {1,0,1,0}, //channel 5
+   {1,0,1,0}, //channel 3
+    {1,1,0,0}, //channel 4
     {1,0,1,0}, //channel 5
+    
     {0,1,1,0}, //channel 6
     {1,1,1,0}, //channel 7
     {0,0,0,1}, //channel 8
@@ -365,9 +377,14 @@ void serverDemo()
     // close the connection:
     client.stop();
     Serial.println(F("Client disconnected"));
+    NUM_REQUESTS_SERVED++;
+    char tbs[64];
+
+    sprintf(tbs, "Finished Requests: %4d", NUM_REQUESTS_SERVED);
+    Serial.println(tbs);
 //
 //      // Let's see if the client is unavailable as it should be...
-//    delay(1000);
+//    delay(1000);<
 //    Serial.println("Are we available?");
 //    Serial.println(client.available());
 //    Serial.println("Are we connected?");
