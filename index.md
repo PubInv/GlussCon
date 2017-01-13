@@ -23,7 +23,7 @@ The GlussCon project is led by Evan Bartilson and Joshua Hannan, with input from
 
 The GlussCon project is just beginning.  
 
-<img width="60%" src="./images/GlussConTet.jpg"/>
+
 
 The current system functions to remote controller the first tetrahedron of the glussbot robot.  The system consists of the 3D printable parts that implement
 the turret joint while holding linear potentiometers. The pots are multiplexed through a 16 channel MUX chip (only 6 channels in use presently). They are
@@ -33,11 +33,12 @@ We then read these values and send them to the Tetrobot using a control program 
 # Plans
 
 Our initial plans right now are to:
-+ Expand to a full 7-Tet controller
-+ Decrease the lag time by improving the WIFI (and other delays)
-+ Continue playing to understand how to best use this concept
+* Expand to a full 7-Tet controller
+* Decrease the lag time by improving the WIFI (and other delays)
+* Continue playing to understand how to best use this concept
 
 
+<img width="60%" src="./images/GlussConTet.jpg"/>
 
 # How to Contribute
 
