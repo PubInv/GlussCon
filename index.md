@@ -1,6 +1,6 @@
 ---
 layout: default
-title: GlussCon -- A Gluss Controller
+title: GlussCon/TetroCon -- A Gluss/Tetrobot Controller
 ---
 
 
@@ -10,36 +10,33 @@ title: GlussCon -- A Gluss Controller
 This is a project of Public Invention in support of [The Gluss Project](http://pubinv.github.io/gluss/), a radical approach to robotics trying
 to build a general purpose metamorphic machine. Like all Public Invention projects, it is completely open-source and does not seek patents.
 
-The Gluss Controller, or GlussCon, explores the possibility of building a hand-manipulable controller which is a puppet or doll--a miniature version of
-the larger GlussBot which is to be controlled.  By pushing the GlussCon into position with the hands, the GlussBot can be instructed to assume the same
-configuration (but on a large scale.)  The hope is that in this way a work person can easily control the GlussBot in doing tasks that would otherwise
+The Tetrobot Controller, or TetroCon, explores the possibility of building a hand-manipulable controller which is a puppet or doll--a miniature version of
+the larger GlussBot/Tetrobot which is to be controlled.  By pushing the TetroCon into position with the hands, the GlussBot/TetroBot can be instructed to assume the same
+configuration (but on a large scale.)  The hope is that in this way a work person can easily control the GlussBot/Tetrobot in doing tasks that would otherwise
 be difficult to specify.
 
 The GlussCon project is led by Evan Bartilson and Joshua Hannan, with input from Robert L. Read.
 
-# Approach So Far
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B5CEYXGaeq0" frameborder="0" allowfullscreen></iframe>
 
-The GlussCon project is just beginning.  The team is currently exploring the possibility of encasing a linear potentiometer in a 3D printed enclosure
-to form a connector.  An Arduino will be used to read the the resitance (and hence the amount of contraction or expansion of the connector) of the
-linear potentiometer.  The connectors will join to the turret joints produced at an appropriate scale to produce a network of tetrahedra
-corresponding precisely in shape (but in miniature) to a GlussBot geometry.  The current position will be transmitted via Bluetooth of WIFI to
-the computer controller the GlussBot.
+# Progess So Far
 
-At present, we have purchased Linear Potentiometers, practices reading their values, and designed and printed a moving enclosure. Basically
-we have a single Tetrahedron almost ready:
+The GlussCon project is just beginning.  
 
 <img width="60%" src="./images/GlussConTet.jpg"/>
 
+The current system functions to remote controller the first tetrahedron of the glussbot robot.  The system consists of the 3D printable parts that implement
+the turret joint while holding linear potentiometers. The pots are multiplexed through a 16 channel MUX chip (only 6 channels in use presently). They are
+read through a standard Arduino Uno. This has a Sparkfun ESP8266 WIFI shield, which responds to http requests by returning all pot values in JSON.
+We then read these values and send them to the Tetrobot using a control program that you can find at the Gluss github Repo.
 
 # Plans
 
+Our initial plans right now are to:
++ Expand to a full 7-Tet controller
++ Decrease the lag time by improving the WIFI (and other delays)
++ Continue playing to understand how to best use this concept
 
-We intend to use a MUX chip controlled by an Arduino to read the positions of the potentiometers. We will likely use
-either an Arduino or a Raspberry Pi as the controller to transmit data via WIFI.
-
-Our hope is to keep the GlussCon independent of the GlussBot, even though its main purpose is to controll the GlussBot.
-For example, we (and you, the hobbyist who wants to duplicate our open-source work) may implement a "fader box"
-or an equalizer with the same technology. (Those application don't require the "glussy" geometry.0
 
 
 # How to Contribute
