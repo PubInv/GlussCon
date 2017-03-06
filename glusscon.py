@@ -88,6 +88,12 @@ def getpotval():
         result = result + "\""+actNameFromNumber(2) +"\": "
     elif (i == 2):
         result = result + "\""+actNameFromNumber(1) +"\": "
+    elif (i == 3):
+        result = result + "\""+actNameFromNumber(4) +"\": "
+    elif (i == 4):
+        result = result + "\""+actNameFromNumber(5) +"\": "
+    elif (i == 5):
+        result = result + "\""+actNameFromNumber(3) +"\": "
     else:
         result = result + "\""+actNameFromNumber(i) +"\": "      
     result = result + str(int(math.floor(adc.read_adc(0,gain=2/3)/17))) 
