@@ -82,6 +82,7 @@ def getpotval():
   for i in range(0,9):
     #print result
     setmuxsel(i)
+#    setmuxsel(7)
     # Because the current glusscon is physcially wired wrong,
     # I attempt to correct it in software here by swapping #1 and #2.
     if (i == 1):
@@ -89,10 +90,12 @@ def getpotval():
     elif (i == 2):
         result = result + "\""+actNameFromNumber(1) +"\": "
     elif (i == 3):
-        result = result + "\""+actNameFromNumber(4) +"\": "
-    elif (i == 4):
         result = result + "\""+actNameFromNumber(5) +"\": "
+    elif (i == 4):
+#        result = result + "\""+actNameFromNumber(5) +"\": "
+        result = result + "\""+actNameFromNumber(4) +"\": "
     elif (i == 5):
+#        result = result + "\""+actNameFromNumber(3) +"\": "
         result = result + "\""+actNameFromNumber(3) +"\": "
     else:
         result = result + "\""+actNameFromNumber(i) +"\": "      
