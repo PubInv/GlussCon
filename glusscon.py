@@ -4,6 +4,7 @@ import time
 import math
 from time import sleep
 from flask import Flask
+import sys
 
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
@@ -86,17 +87,15 @@ def getpotval():
     # Because the current glusscon is physcially wired wrong,
     # I attempt to correct it in software here by swapping #1 and #2.
     if (i == 1):
-        result = result + "\""+actNameFromNumber(2) +"\": "
+        result = result + "\""+actNameFromNumber(3) +"\": "
     elif (i == 2):
         result = result + "\""+actNameFromNumber(1) +"\": "
     elif (i == 3):
-        result = result + "\""+actNameFromNumber(5) +"\": "
-    elif (i == 4):
-#        result = result + "\""+actNameFromNumber(5) +"\": "
         result = result + "\""+actNameFromNumber(4) +"\": "
+    elif (i == 4):
+        result = result + "\""+actNameFromNumber(5) +"\": "
     elif (i == 5):
-#        result = result + "\""+actNameFromNumber(3) +"\": "
-        result = result + "\""+actNameFromNumber(3) +"\": "
+        result = result + "\""+actNameFromNumber(2) +"\": "
     else:
         result = result + "\""+actNameFromNumber(i) +"\": "      
     result = result + str(int(math.floor(adc.read_adc(0,gain=2/3)/17))) 
@@ -104,6 +103,7 @@ def getpotval():
       result = result + "\n"
     else:
       result = result + ",\n"
+  print >> sys.stderr, result
   return result + "}"
 
 if __name__ == "__main__":
