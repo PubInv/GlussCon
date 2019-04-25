@@ -15,15 +15,14 @@ the larger GlussBot/Tetrobot which is to be controlled.  By pushing the TetroCon
 configuration (but on a large scale.)  The hope is that in this way a work person can easily control the GlussBot/Tetrobot in doing tasks that would otherwise
 be difficult to specify.
 
-The GlussCon project is led by Evan Bartilson and Joshua Hannan, with input from Robert L. Read.
+The GlussCon project was originally led by Evan Bartilson and Joshua Hannan, with input from Robert L. Read.
+The current volunteer is Avinash Baskaran.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B5CEYXGaeq0" frameborder="0" allowfullscreen></iframe>
 
 # Progess So Far
 
-The GlussCon project is just beginning.  
-
-
+The GlussCon project is still early in its evolution.
 
 The current system functions to remote controller the first tetrahedron of the glussbot robot.  The system consists of the 3D printable parts that implement
 the turret joint while holding linear potentiometers. The pots are multiplexed through a 16 channel MUX chip (only 6 channels in use presently). They are
@@ -33,18 +32,20 @@ We then read these values and send them to the Tetrobot using a control program 
 # Plans
 
 Our initial plans right now are to:
-* Expand to a full 7-Tet controller
-* Decrease the lag time by improving the WIFI (and other delays)
-* Continue playing to understand how to best use this concept
-
+* Improve the wiring so it is not so awkward, while keeping our multiplexing model.
+* Expand to a full 7-Tet controller.
+* Improve the 3D printing to make a sturdier solution that we can allow kids to handle without risk of breakage.
+* Decrease the lag time by improving the WIFI (and other delays).
+* Continue playing to understand how to best use this concept.
+* Write a paper aimed at a robotic conference.
 
 <img width="60%" src="./images/GlussConTet.jpg"/>
 
 # How to Contribute
 
 We welcome your participation, in either the GlussCon project, the Gluss project, or one of the other Public Invention projects.
-To discuss the GlussCon project specifically, email Joshua Hannan 
-<hannanjoshua19@gmail.com> (Github: [joshuahannah](https://github.com/joshuahannan)) or Evan Bartilson <ebartilson@utexas.edu>.
+To discuss the GlussCon project specifically, email Robert L. Read <read.robert@gmail.com>
+Github: [robertlread](https://github.com/RobertLRead))
 
 You are welcome to email Robert L. Read <read.robert@gmail.com> to discuss how you can help the Public Invention projects in general.
 
@@ -53,4 +54,3 @@ on these projects.
 You can do this by opening an ("issue")[https://github.com/PubInv/PubInv/issues] here at GitHub.  If you want to add to or improve one of the existing documents, you can do this with a "pull request".
 
 You may wish to subscribe to our <a href="https://www.youtube.com/watch?v=1T8XSMhwKUE">YouTube Channel</a>. Since we are bound neither by the need to keep something secret due to patent restrictions imposed by Universities, nor by the formality of Academic publishing, nor by the need to maintain trade secrets, we publish informally a lot at YouTube.
-
