@@ -12,8 +12,12 @@
 //////////////////////////////
 // Replace these two character strings with the name and
 // password of your WiFi network.
-const char mySSID[] = "readfamilynetwork";
-const char myPSK[] = "magicalsparrow96";
+// const char mySSID[] = "readfamilynetwork";
+const char mySSID[] = "TechShop WiFi";
+const char myPSK[] = "";
+
+const int CLOSE_DELAY_MS = 500;
+
 
 //////////////////////////////
 // ESP8266Server definition //
@@ -42,7 +46,7 @@ int NUM_REQUESTS_SERVED = 0;
 // Contstant definitions
 int POTPIN = A0;             // analog pins used for the potentiometer
 
-int NUM_POTS = 6;            // number of potentiometers in the design
+int NUM_POTS = 9;            // number of potentiometers in the design
 // int MUX_SEL[] = {5,3};       // digital outputs pins for selecting a mux line
 
 //Mux control pins
@@ -178,7 +182,7 @@ int readMux(int channel){
 //    {1,0,1,0}, //channel 5
    {1,0,1,0}, //channel 3
     {1,1,0,0}, //channel 4
-    {1,0,1,0}, //channel 5
+    {0,0,1,0}, //channel 5
     
     {0,1,1,0}, //channel 6
     {1,1,1,0}, //channel 7
@@ -372,7 +376,7 @@ void serverDemo()
     
     
     // give the web browser time to receive the data
-    delay(500);
+    delay(CLOSE_DELAY_MS);
 //   
     // close the connection:
     client.stop();

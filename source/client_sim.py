@@ -12,11 +12,12 @@ import httplib
 
 
 def main():
+    url = '192.168.1.244'
     # Establishes connection with an http server
-    h1 = httplib.HTTPConnection('192.168.1.163')
+    h1 = httplib.HTTPConnection(url)
 
     # sends a request for information
-    h1.request("GET","192.168.1.163")
+    h1.request("GET",url)
 
     # puts the response in an object
     r1 = h1.getresponse()
