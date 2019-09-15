@@ -166,23 +166,7 @@ a relatively new joint \cite{song2003spherical} which allows, for example, as ma
 members to be joined together sturdily at a single point.
 A 3-D printed embodiment presented here, called the \emph{turret joint}, allows the
 change of angle required for the gluss to ooze about. Some gluss consists of some actuators joined together
-with some turret joints and whatever batteries and control microelectronics are needed. In the first
-crawling robot discussed here, the \emph{3TetGlussBot}, there are two controllers and two batteries
-in addition to the 12 actuators and the 6 multi-member turret joints, but 3TetGlussBot is only
-a small amount of gluss compared to what we hope to build. Additionally, we present \emph{5TetGlussBot}, an obvious extension of the
-3Tet geometry implemented with magnetic joints.
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=1.0\textwidth]{figures/TwoGeometries.jpg}
-    \caption[The Octet Truss (above) and Tetrahelix (below)]{The Octet Truss (above) and Tetrahelix (below)}
-      \label{twogeometries}
-\end{figure}
-
-
-Although unlimited geometries are possible, two geometries (See Figure \ref{twogeometries})
-have the advantage of being regular, thus allowing us to
-seamlessly connect any number of actuators into any amount of gluss with some hope of effective software control.
+with some turret joints and whatever batteries and control microelectronics are needed.
 
 \begin{enumerate}
 \item Design concept
@@ -295,21 +279,11 @@ variable member lengths liberated from using a finite set of angles.
       \label{simplified-constraint-drawing}
 \end{figure}
 
-How versatile can we make the turret joint?
-
-In particular, since we are attempting to build gluss which is regular in its use of actuators, we may ask:
-What is the maximum range of motion in our
-actuators which we can usefully employ in our gluss?
-To work independent of scale, we use the symbol $Q$ to denote the ratio of the actuator length at its
-longest to its length at its shortest.
-The particular Actuonix\textsuperscript{TM} actuators we use have a $Q$ of 1.5. But is that the maximum $Q$ that we could utilize? Or is
-it already too high?
-
 One way to approach this problem is to consider a single triangle formed by joints and actuators.
 The joint must support the most acute triangle
 that can be formed with the three actuators and the most obtuse triangle that can be formed with the actuators.
 
-In fact it is a surprising result that we prove in Appendix A that the maximum $Q$ which can be utilized
+In fact it is a surprising result that we prove elsewhere \cite{readglussbot} in Appendix A that the maximum $Q$ which can be utilized
 by an ideal turret joint happens to be
 the famous golden ratio, $\varphi \equiv \frac{1 + \sqrt{5}}{2} \approx 1.618...$, and the maximum deviation for any one member coming
 into the joint is $36\degree$.
@@ -360,77 +334,13 @@ Furthermore, the joint adds a certain necessary thickness, the minimum length
       \label{parts}
 \end{figure}
 
-In Section \ref{linearactuators}, one of our actuators and also a carbon rod with 3D-printed tubular mounts
-are shown in Figure \ref{rodAndActuator}.
-The carbon rod and mounts can be used as a construction system to build a static structure.
-By cutting the rods to any length (with $Q \leq \varphi$), you can build a static version of any geometry that
-the actuators
-are capable of dynamically achieving.
-
-\subsection{Specific Geometries}
-
-Although the possible ways to configure actuators and joints is limitless, the simplest thing is to
-use regular, repeatable geometries. The two most obvious are the Boerdijk–-Coxeter helix
-(more easily called the \textit{tetrahelix})
-\url{https://en.wikipedia.org/wiki/Boerdijk%E2%80%93Coxeter_helix}
-  and the \emph{Octet Truss}
-  \cite{richard1961synergetic}.
-  It is instructive to compare Figure \ref{octet-truss-patent} with the photo of the same object
-  made with the Geomag\textsuperscript{TM} toy shown in Figure \ref{twogeometries}.
-
-Roughly speaking, the Tetrahelix is a good way to make a long shaft or tentacle, and the octet truss
-is a good way to make a planar shape. The purpose of a tentacle is to curl, and the we have no word for
-a stingray-like plane that rolls itself up into a cylinder or cone or forms a barrel vault. Buckminster Fuller discusses
-both the tetrahelix and octet truss \cite{fuller1982synergetics} in terms of static structures and geometries.
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{figures/OctetTrussSelection.png}
-    \caption[The Octet Truss]{The Octet Truss, selected from Buckminster Fuller's patent.}
-      \label{octet-truss-patent}
-\end{figure}
-
-The Octet Truss reflects the geometry called the \emph{cuboctahedron}.
-
-Because the Turret Joint does not support infinite revolution of all members, the joint, or the ``lock'' or ``stator'' in particular,
-must be adjusted to the regular geometry that one is implementing.  Figure \ref{lockcomparison} indicates this difference.
-The image is from TurrentJoint.scad:\\
-\url{https://github.com/PubInv/turret-joint/blob/master/Models/TurretJoint.scad}, an
-open-source file that can be used to 3D print all of the turret joint components.
-It shows a lock part for the Tetrahelix geometry
-on the left, and the more expansive Octet Truss geometry on the right. Observe that some of the holes are
-semicircular, half in this part,
-and half in the ``cap'' parts not shown here.
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{figures/TetrahelixLockVsOctetTrussLock.png}
-    \caption[Lock Comparison]{Lock Comparison}
-      \label{lockcomparison}
-\end{figure}
-
-
-We have additionally experimented with magnetic joints similar to those use in the Geomag\textsuperscript{TM} toy.
-These joints use 1/2'' diameter by 1'' long neodymium magnets restrained within small cages such that the circular face
-may contact a 2'' diameter hollow steel ball.  This provides a pull force greater than the 50 Newton force applied by our linear
-actuators.
-
-Although this joint functions well and easily achieves the intention of making the robot quick to assemble and
-disassemble for travel,
-it is easily broken by non-axial forces exerted from outside the robot.
-Since climbing over obstacles and stairs will necessarily involve side forces on the actuators,
-we intend to move away from the magnetic joints.
-
-Furthermore, it would be very expensive to scale upward (and similarly becomes less expensive when
-scaling downward.) We believe the magnetic joint could be a good engineering solution for glussbots smaller than the current
-general scale of 50 Newton, 400mm-average-length actuators.
 
 
 \subsection{Open Source Realizations}
 
 \section{Related Research}
 
-Between 1996 and 2002 years ago, Arthur C. Sanderson and his colleagues published a series of
+Between 1996 and 2002, Arthur C. Sanderson and his colleagues published a series of
 papers\cite{sanderson1996modular,lee2002dynamic,lee1999dynamics} on modular robots.
 The ``TETROBOT'' was a variable-geometry truss, in which motion was accomplished but the change
 in length of linear actuators, connected in a modular geometry based on the tetrahedron and octahedron.
@@ -501,243 +411,5 @@ To assist, contact \href{mailto:read.robert@gmail.com}{$<$read.robert@gmail.com$
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,gluss}
-
-
-
-\newpage
-
-
-
-\appendix
-
-\section{Turret Joint Geometric Limitations}
-
-\label{phiproof}
-
-\subsection{Geometric Preparation}
-
-
-
-Defining all angles against a center line between two rotor holes in a plane,
-let:
-
-$ A \equiv $ Min Actuator Length. Without loss of generality, assume this is $ 1.0 $.
-
-$ Z \equiv $ Max Actuator Length
-
-$ Q \equiv \frac{Z}{A} $, The ratio of the actuator lengths, noting that $Q \geq 1$. Since $A = 1$, $Q \equiv Z$.
-
-$ G \equiv $ Greatest Angle Reachable by Center of Rotor
-
-$ L \equiv $ Least Angle Reachable by Center of Rotor
-
-$ P \equiv $ Angle from the Post to the edge of the Rotor
-
-$ \theta \equiv $ Angle of Inmost Edge of the Rotor Hole
-
-$ \psi \equiv $ Angle of Outmost Edge of the Rotor Hole
-
-
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{figures/ConstraintDrawing.png}
-    \caption[Constraints]{Turret Joint Geometry Constraints}
-      \label{constraint-drawing}
-\end{figure}
-
-\bigskip
-
-What $\theta, \psi$ maximizes $Q$ and what is $Q$?
-
-\bigskip
-
-We will define the angle of the hole to be:
-
-\[\tag{Delta Definition} \Delta \equiv \psi - \theta \]
-
-From the diagram:
-
-
-We then place engineering constraints upon these variables to represent physical conditions
-which define the limits of the joint.
-We name these constraints \textit{meet}, \textit{bump}, \textit{capture}.
-
-The \textit{meet} condition means that post is actually within the hole.
-
-The \textit{bump} condition means that the rotors don't bump into each other
-in their extreme position.
-
-The \textit{capture} condition means that the the rotor can't fall out of the hole.
-
-In both cases, we have have the capture constraint:
-
-\[ \tag{capture} \Delta \geq G - L \]
-
-To realize the most acute position, we have constraints:
-
-\[ \tag{acute meet} \theta \leq L \]
-
-\[ \tag{acute bump} \frac{\Delta}{2} \leq \theta  \]
-
-To realize the least acute position, we have constraints:
-
-\[ \tag{obtuse meet}  \psi \leq G \]
-
-It is perhaps obvious that the rotors cannot bump in the most obtuse position, but we observe that:
-
-\[ \tag{obtuse bump} 360\degree - 2\cdot \psi \geq \frac{G - L}{2} \]
-
-is invariably true because $2\cdot\psi < 180\degree$ because psi is a half angle of a triangle, and likewise $\frac{G - L}{2} < 180\degree$.
-
-\subsection{Maximum usable Q = $\varphi$}
-
-In the previous subsection we set up geometric conditions generally so that we could consider them from
-both a Classical Trigonometry and from Rational Trigonometry.  Although we used the world ``angle'', we did not
-rely additive properties of angles except in the definition of Delta and the ``obtuse bump'' condition.  This will allow us
-to perform an analysis in Rational Trigonometry in the next section.
-
-When we attempt to set $G$ and $L$ to be as wide apart as possible by asserting $G \equiv \psi$ and $L \equiv \theta$, we must
-ensure that all of thse constaints are true. The two meet conditions become true by equality. Likewise the capture condition
-is trivially true by substitution. The obtuse bump condition can
-never be false.  However, the acute bump conditions remains:
-
-\[ \tag{acute bump} \frac{\Delta}{2} \leq \theta  \quad \equiv \quad \frac{G - L}{2} \leq L  \quad \equiv \quad G \leq 3 \cdot L \]
-
-\[
-G \equiv \arcsin{\frac{Q}{2}}
-\]
-\[
-L \equiv \arcsin{\frac{1}{Q \cdot 2}}
-\]
-
-Returning to our definitions of G and L,
-
-\[ \arcsin{\frac{Q}{2}} \leq 3 \cdot \arcsin{\frac{1}{Q \cdot 2}} \]
-
-So our question becomes what is the maximum $Q$ that satisfies this inequality. Noting from the graph of the $\arcsin$ function in
-the relevant ranges where $Q \geq 1$ that $G$ is a monotonically increasing function and $L$ is a
-monotonically decreasing function of $Q$ (since $Q$ is in the denominator), the maximum $Q$ will be the solution to:
-
-\[\tag{original}  \arcsin{\frac{Q}{2}} = 3 \cdot \arcsin{\frac{1}{Q \cdot 2}} \]
-
-Upon investigating this with a spreadsheet we noted that Q suspiciously approached the famous number 1.618..., the golden ratio, $\varphi$.
-We investigated further with the help of Wolfram Alpha Pro
-(\href{https://www.wolframalpha.com}{https://www.wolframalpha.com}).
-Wolfram Alpha gave us a closed-form solution to \emph{original} of $\frac{1 + \sqrt{5}}{2}$
-that we recognized as $\varphi$, but oddly would
-not show us the set of transformations. After verifying that $Q = \varphi$ was
-a solution in that way, we used the special property of
-$\varphi$ that $ \varphi = \frac{1}{\varphi} + 1 $, to rewrite our constaint as:
-
-\[\tag{assuming $Q=\varphi$} \arcsin{\frac{Q}{2}} = 3 \cdot \arcsin{\frac{Q - 1}{2}} \]
-
-which led Wolfram Alpha Pro to indeed provide a long and complex chain of trigonometric transformations to show that
-$Q \equiv \frac{1 + \sqrt{5}}{2} \equiv \varphi$ is actually an algebraic solution to
-this equation.
-
-Thus the surprising result is obtained that, for a turret joint where the problem of the rotors physically bumping is not
-solved by some other means, the highest $Q$ that we can take advantage of is $\varphi$, and that it would be
-perfectly correct in Figure \ref{constraint-drawing} to label the slenderest triangle as a Golden Triangle and the obtuse
-triangle as a Golden Gnomon. Furthermore, $\theta = 18\degree$, and $\psi = 54\degree$, and $\Delta = 36\degree$.
-
-This is a valuable ideal to strive for, but a physically realizable joint may not support such a high $Q$,
-because any naive physically realizable
-turret joint is likely to have a rotor diameter with a lip significantly larger than the hole, and the post will have an actual
-thickness that must be considered in computing $G$ and $L$. Nonetheless this analysis is a starting point for analyzing more
-realistic joints, even if such joints will have to be dealt with numerically rather than having an elegant analytic solution.
-
-\label{rationalphiproof}
-
-\subsection{Rational Trigonometry}
-
-A magician may pull a rabbit out of a hat, but a mathematician should avoid it.
-The Classical Trigonometry result in the last section feels like pulling a rabbit out of a hat because it relies
-on results beyond our ability of human calculation.  Norman J. Wildberger has a presented a simpler re-formulation
-of trigonometry called Rational Trigonometry\cite{wildberger2005} that proposes to avoid such rabbits.
-
-This section assumes the reader is familiar with Rational Trigonometry.
-
-In our diagram and our previous formulation, we can almost treat the angles of that diagrams as spreads. However,
-since spreads are non-linear, we cannot use \textit{Delta Definition},  or \textit{acute bump} in their
-formulation from that section.
-
-
-Now if we consider $theta$, $G$ and $L$ as spreads, we have the definition of the spread as the quadrance of the
-opposite leg over the quadrance of the hypotenuse:
-
-
-\[ \tag{rational-theta} \theta \quad \equiv \quad \frac{(1/2)^2}{Q^2} \quad \equiv \quad \frac{1}{4 \cdot Q^2}  \]
-
-\[ \tag{rational-psi} \psi \quad \equiv \quad (\frac{Q}{2})^2 \quad \equiv \quad \frac{Q^2}{4}  \]
-
-
-Rather we assert to avoid the problem of the rotors bumping in the case of the most acute triangle we assert:
-
-\[ \tag{rational acute bump} P \leq \theta  \]
-
-Our goal is to find the maximum Q satisfying all constraints.  It is clear that $\theta$ goes down as $Q$ goes
-up, and that $\psi$ goes up as $Q$ goes up.  $P$ goes up as $Q$ goes up (this remains to be rigorously shown).
-
-Therefore $Q$ is maximized when $P = \theta$.
-
-We can thus use Theorem 56 (Three equal spreads) \cite{wildberger2005} on $\theta$:
-
-\[  \psi \equiv \theta (3 - 4 \cdot \theta)^2  \]
-
-together with \textit{rational-psi} via substitution to obtain a series of purely algebraic manipulations:
-
-\[  \frac{Q^2}{4} = \theta (3 - 4 \cdot \theta)^2  \]
-
-then by substituting \textit{rational-theta}:
-
-\[  \frac{Q^2}{4} = \frac{1}{4 \cdot Q^2} (3 - 4 \cdot \frac{1}{4 \cdot Q^2})^2  \]
-
-performing elementary algebraic simplification we obtain:
-
-\[  Q^4 = (3 - \frac{1}{Q^2})^2   \]
-
-Perform the substitution $x = Q^2$:
-
-\[  x^2 = (3 - \frac{1}{x})^2   \]
-
-Take the square root of both sides and converting to common fraction:
-
-\[  x = \pm \frac{(3\cdot x - 1)}{x}   \]
-
-Cross multiplying and simplifying:
-\[  x^2 - 3\cdot x =  - 1   \]
-
-Completing the square by adding $\frac{9}{4}$ to both sides:
-\[  x^2 - 3\cdot x + \frac{9}{4} =  \frac{5}{4}   \]
-
-Writing left hand side as a square:
-
-\[  (x- \frac{3}{2})^2 =  \frac{5}{4}   \]
-
-Take the square root of both sides:
-
-\[  \pm (x- \frac{3}{2}) =  \pm \frac{\sqrt{5}}{2}   \]
-
-Adding $\frac{3}{2}$ to both sides:
-
-\[  x =   1 + \frac{1}{2} + \frac{\sqrt{5}}{2}   \]
-
-Being previously alerted to the existing of $\varphi$ in our solution, we recognize
-this as $1 + \varphi = \varphi^2$.
-
-\[  Q = \sqrt{x}  =   \sqrt{1 + \varphi}  \]
-
-Substituting back into $x = Q ^ 2$,
-
-\[  Q =   \varphi  \]
-
-Note that we have taken square roots twice in this operation, and therefore must
-check that the negative solutions are not also valid solutions. Wolfram Alpha Pro
-combined with the fact that only $Q > 1.0$ allows us to conclude this is the
-only valid solution.
-
-We have thus obtained the same algebraic result as the trigonometrical more understandably
-and with less recourse to computer aids.
 
 \end{document}
