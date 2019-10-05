@@ -58,17 +58,18 @@ Avinash Baskaran
 
 \section{Introduction}
 Snake-like robots are particularly advantageous due to their ability to adopt varying geometries to navigate curvilinear paths.  They accomplish body undulation as a method of locomotion via . The design and construction of such objects relies on flexible actuation with respect to the field of motion.
+We have developed a biomimetically inspired hand-held input device, the motion of which can be digitally mapped onto the existing control mechansisms of robotic systems of to offer users and operators a direct human-robot interface for control. Snake-like robots are particularly advantageous due to their ability to adopt varying geometries to navigate curvilinear paths. Our device can be manipulated in 3-space to conform to various geometries such that the operation of linear robots in 3-space can be accomplished. As such, our device offers users a more organic movement control mechanism, which is highly favorable for applications where sensitive control and feedback are required. 
+As described in [Avinash1], Snake-like robots traditionally accomplish locomotion via body undulation using passive mechanisms to overcome environmental non-uniformities on 2-dimensional surfaces. Weight distribution mechansisms allow for undulation in the 3rd dimension, allowing  such robots to fully  mimic the mechanism of snakes. The control of snake-like robots often relies on static control mechanisms or digital path planning, while our controller is capable of being dynamically manipulated to accomplish these snake-like movements, and is thus a more favorable mechanism to operate snake-like robots.
+The simplistic design and construction of the device enables lightweight, modular deployment, with removeable components that allow for rapid repairs, and flexible design augmentation; the device design intrinsically encourages the addition of sensors, and end effector analogues upon its frame to control custom robotic implements, making it suitable for a variety of applications.
 
 
 \subsection{Motivation}
-
-\subsubsection{Input Medical}
-\subsubsection{Tetrobots and Other Snake-like Robots}
-
+While digital feedback and control mechanisms are useful due to their considerably greater reaction speed, high degree of autonomy, and dependable performance, there exist many applications in which human input is favorable. Our intuitive understanding of the locomotion we wish to accomplish in a given task and innate risk/reward analysis allows us to make decisions with a degree of creativity and complexity that is prohibitively high to provide in all circumstances. In such circumstances, providing a mechansim to translate human control allows for an integration of these aspects with existing control and feedback structures to optimize performance.
 \section{Abstract Design}
 \subsection{Tretrahelix}
 \subsection{Linear Displacement to Cartesian}
-\subsection{The Song-Kwon-Kim Joint}
+\subsection{The textit{Turret} Joint}
+We employ a novel spherical joint designed by Song et. al. \cite{song2003spherical}, which serves as an effective method for joining linear sections in a tetrahedral configuration while allowing fixed and defined points of rotation.    
 \subsection{Related Research}
 
 \section{Method and Embodiment}
@@ -188,7 +189,7 @@ with some turret joints and whatever batteries and control microelectronics are 
   \item Gluss-con scaling/proportions to the Gluss
   \item Universal joint / modularity
   \end{enumerate}
-\item Sleeves
+m\item Sleeves
   \begin{enumerate}
   \item Modularity
   \end{enumerate}
