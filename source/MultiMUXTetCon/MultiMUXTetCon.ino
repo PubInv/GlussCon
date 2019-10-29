@@ -28,9 +28,11 @@ SparkFun Multiplexer Breakout - 8-Channel(74HC4051) v10
 // Pin Definitions //
 /////////////////////
 // The first MUX uses 2,3,4, the next uses 5,6,7
-const int NUM_BOARDS = 2;
-const int selectPins[][3] = { {2, 3, 4},        // S0~2, S1~3, S2~4
-                              {5, 6, 7} };
+const int NUM_BOARDS = 4;
+const int selectPins[][3] = { {2, 3, 4 },        // S0~2, S1~3, S2~4
+                              {5, 6, 7 },
+                              {8, 9, 10},
+                              {11,12,13} };
 
 const int zInput[4] = {A0,A1,A2,A3};
 
