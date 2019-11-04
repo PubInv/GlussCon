@@ -85,14 +85,31 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
  \begin{enumerate}
  \item Mechanism
  \item Housing
- \item Wiring
  \item Multiplexing
  \item Wireless communication
  \end{enumerate}
 
- As described, the controller relies on an array of linear potentiometers embedded within 3D printed sleeve components, which comprise the device's physical framework. Each linear potentiometer allows for measurements of displacement along the 'z' axis, which is useful in our case given that the movement of the device is constrained by the dimensions of the jointing system, and the spatial orientation of each link relative to the system can be extrapolated based on the potentiometer measurements [see figure ?? (attach figure here)]
+ The controller consists of an array of tetrahedrally arranged linear potentiometers embedded within 3D printed sleeve components, which comprise the device's physical framework. Each linear potentiometer allows for measurements of displacement along a single axis, which allows us to map the movement orientation of each sleeve simply using the analog output of each sensor. Each tetrahedron, groupings of 6 linear potentiometers, forming functional subdividisions of the structure, is provided a voltage input, ground, and signal output chanenel via onboard 8-channel multiplexers mounted to a single sleeve within the corresponding tetrahedron.
 
- The framework is further comprised of 'tetrahedra', groupings of 6 linear potentiometers which form functional subdividisions of the structure. The freedom of motion for the device is precisely provided by spacing at the joint. Each of the 'Tetrahedra' is wired to a mutiplexer capable of providing power and input channels to the sensors. The primary function of the multiplexers is to gather and send data from the (exact number?) sensors at near real-time to a processing unit, in our case, an Arduino Uno microcontroller, which allows the singals from the potentiometers to be read together with little delay time between readings. The result of this system is the ability to precisely match the movement of the controller at the receiving end of a system. This functionality is exemplified in a modified version of the aforementioned 'TETROBOT', developed in house at PubInv [attach video reference here].
+ [Discuss printed parts, mechanics and dynamics:]
+ A controlled flexibility of an otherwise rigid the device,is provided by a spherical joint, invented by Song, Kwon, and Kim [?], depicted conceptually in (figure?: Song, Kwon, Kim, patent image) and (figure?: Turret Joint Planar Geometry).
+ 
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{figures/SongKwonKimImage.png}
+    \caption[Song, Kwon, Kim, patent image.]{Song, Kwon, Kim, patent image.}
+      \label{SongKwonKimImage}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/SimplifiedConstraintDrawing.png}
+    \caption[Turret Joint Planar Geometry]{Turret Joint Planar Geometry}
+      \label{simplified-constraint-drawing}
+\end{figure}
+ 
+ The  multiplexers send data from the (exact number?) sensors at near real-time to our processing unit, an Arduino Uno microcontroller, which provides 5V supply, ground, analog inputs, and digital control outputs to each of the multiplexers, and streams the data from each sensor via (bluetooth?) to an external location which can create a virtual reconstruction of the device, or further send data to a corresponding robot to be controlled. The use of multiplexers allows the singals from the potentiometers to be read together with little delay time between readings. The result of this system is the ability to precisely match the movement of the controller by a robot receiving the data. We have demonstrated this in (figure?: Screenshot of live visualization of the TetraCon using Dr. Read's software) and in (link?: video of Tetrobot being operated using TetroCon).
      
 \subsection{System Design}
 \section{Applications and Uses}
@@ -112,7 +129,7 @@ The need for a more intuitive and organic telepresence operator in the field of 
 Snake-like robots are highly advantages for extra-terrestrial navigation as well, given the non-uniform terrain that must be navigated on other planetary bodies. The TetraCon presents an advantage in this field in that it is already well-suited for the control and operaiton of such robots by the nature of its design. [examples:] 
 \subsubsection{Tetrobot Telepresence Controller}
 
-The Tetrobot [avinash4], an initial concept proposed by... [pull from Rob's section] 
+The Tetrobot, an initial concept proposed by... [pull from Rob's section] 
 \section{Future Work}
 \subsubsection{Reuse of current open-source code and models}
 \subsubsection{Camera-based direct Cartesian Sensing}
