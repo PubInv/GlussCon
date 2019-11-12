@@ -55,6 +55,8 @@ void setup()
   }
 }
 
+const String BOARD_NAMES[4] = {"A","B","C","D"};
+
 int incomingByte = 0;
 int NUMBER_OF_CHANNELS_PER_MUX = 6;
 void loop() 
@@ -62,29 +64,31 @@ void loop()
   if (Serial.available() > 0) {
     // read the incoming byte:
     incomingByte = Serial.read();
-
-    Serial.println("XXX");
-    Serial.println(selectPins[1][2]);
-
-    // say what you got:
-    Serial.print("I received: ");
-    Serial.println(incomingByte, DEC);
     if (incomingByte == '\n') {
+      Serial.println("{ \"response\": ");
       for(int j = 0; j < NUM_BOARDS; j++) {
-        Serial.print("Board #");
-        Serial.println(j);
+        Serial.print("{ \"");
+        Serial.print(BOARD_NAMES[j]);
+        Serial.print("\" :");
+        Serial.print("[");
         for(int i = 0; i < NUMBER_OF_CHANNELS_PER_MUX; i++) {
           selectBrdMuxPin(j,i);
           delay(20);
           int val;
           val = analogRead(zInput[j]);
-//          Serial.println(zInput[j]);
-          Serial.print("pin ");
-          Serial.print(i);
-          Serial.print(" = ");
-          Serial.println(val);
+          Serial.print(val);
+          if (i < (NUMBER_OF_CHANNELS_PER_MUX-1)) {
+            Serial.print(", ");
+          }
+        }
+        Serial.println("]");
+        Serial.print("}");
+        if (j < (NUM_BOARDS-1)) {
+            Serial.println(", ");
         }
       }
+      Serial.println("}");
+     
     }
   }
 }
