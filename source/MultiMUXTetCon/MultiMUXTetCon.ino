@@ -65,30 +65,25 @@ void loop()
     // read the incoming byte:
     incomingByte = Serial.read();
     if (incomingByte == '\n') {
-      Serial.println("{ \"response\": ");
+      Serial.println("{ ");
       for(int j = 0; j < NUM_BOARDS; j++) {
-        Serial.print("{ \"");
-        Serial.print(BOARD_NAMES[j]);
-        Serial.print("\" :");
-        Serial.print("[");
         for(int i = 0; i < NUMBER_OF_CHANNELS_PER_MUX; i++) {
           selectBrdMuxPin(j,i);
           delay(20);
           int val;
           val = analogRead(zInput[j]);
+          Serial.print("\"");
+          Serial.print(BOARD_NAMES[j]);
+          Serial.print(i);
+          Serial.print("\": ");
           Serial.print(val);
-          if (i < (NUMBER_OF_CHANNELS_PER_MUX-1)) {
+          if (i < (NUMBER_OF_CHANNELS_PER_MUX-1) || (j < (NUM_BOARDS-1))) {
             Serial.print(", ");
           }
-        }
-        Serial.println("]");
-        Serial.print("}");
-        if (j < (NUM_BOARDS-1)) {
-            Serial.println(", ");
+          Serial.println();
         }
       }
-      Serial.println("}");
-     
+      Serial.println("}");   
     }
   }
 }
