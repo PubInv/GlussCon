@@ -7,9 +7,11 @@ import math
 from time import sleep
 from flask import Flask
 import sys
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
 
 @app.route("/")
 def getpotval():
@@ -24,4 +26,4 @@ def getpotval():
   return result
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=80, debug=True)
+  app.run(host='127.0.0.1', port=80, debug=True)

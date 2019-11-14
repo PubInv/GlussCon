@@ -8,11 +8,11 @@
 \usepackage{pifont}
 \usepackage{amsmath}
 \usepackage{float}
-\usepackage{draftwatermark}
+%% \usepackage{draftwatermark}
 
-\SetWatermarkText{DRAFT}
-\SetWatermarkScale{6}
-\SetWatermarkLightness{0.95}
+%% \SetWatermarkText{DRAFT}
+%% \SetWatermarkScale{6}
+%% \SetWatermarkLightness{0.95}
 
 % \geometry{letter} % or letter or a5paper or ... etc
 % \geometry{landscape} % rotated page geometry
@@ -40,6 +40,28 @@ Avinash Baskaran
 
 %% \tableofcontents
 
+
+\nocite{read2018transforming,readtetrahelix}
+
+\nocite{sanderson1996modular}
+
+\nocite{lee1999dynamics}
+
+\nocite{lee2002dynamic}
+
+\nocite{NTRT}
+
+\nocite{TetrobotBook}
+
+\nocite{claypool2012readily}
+
+\nocite{mirletz2014}
+
+\nocite{paul2006}
+
+
+
+
 \begin{abstract}
 
 	Humans are skillful. By building a bio-inspired manipulable snake-like controller that can be molded into a wide variety of shapes, we allow a human controller to telepresently specify complex shapes and shape changes. We constructed a tetrahelix consisting of seven tetrahedron made of adjustable-length members connected via 3D printed Song-Kwon-Kim joints which allow manual changes to the shape of the controller. These changes in length are digitized and organized via an Arduino and transmitted to more power computers where they may specify a shape to be animated or control a robot of similar shape, or simply specify relative positions in Cartesian space. Although this research is basic, we hope it will eventually amplify human control of in vivo mechanical devices such as endoscopes, search-and-rescue robots weaseling into tight spaces, or general purpose tetrobots used for planetary space exploration as suggested by Prof. Sanderson and his students 20 years ago.s
@@ -51,7 +73,7 @@ Avinash Baskaran
 
 Snake-like robots are particularly advantageous due to their ability to adopt varying geometries to navigate curvilinear paths.  They accomplish body undulation as a method of locomotion via . The design and construction of such objects relies on flexible actuation with respect to the field of motion.
 
-  We have developed a biomimetically inspired hand-held input device, the motion of which can be digitally mapped onto the existing control mechansisms of robotic systems of to offer users and operators a direct human-robot interface for control. Snake-like robots are particularly advantageous due to their ability to adopt varying geometries to navigate curvilinear paths. Our device can be manipulated in 3-space to conform to various geometries such that the operation of linear robots in 3-space can be accomplished. As such, our device offers users a more organic movement control mechanism, which is highly favorable for applications where sensitive control and feedback are required. 
+  We have developed a biomimetically inspired hand-held input device, the motion of which can be digitally mapped onto the existing control mechansisms of robotic systems of to offer users and operators a direct human-robot interface for control. Snake-like robots are particularly advantageous due to their ability to adopt varying geometries to navigate curvilinear paths. Our device can be manipulated in 3-space to conform to various geometries such that the operation of linear robots in 3-space can be accomplished. As such, our device offers users a more organic movement control mechanism, which is highly favorable for applications where sensitive control and feedback are required.
 
  As described in [Avinash1], Snake-like robots traditionally accomplish locomotion via body undulation using passive mechanisms to overcome environmental non-uniformities on 2-dimensional surfaces. Weight distribution mechansisms allow for undulation in the 3rd dimension, allowing  such robots to fully  mimic the mechanism of snakes. The control of snake-like robots often relies on static control mechanisms or digital path planning, while our controller is capable of being dynamically manipulated to accomplish these snake-like movements, and is thus a more favorable mechanism to operate snake-like robots.
 
@@ -63,10 +85,13 @@ Snake-like robots are particularly advantageous due to their ability to adopt va
 While digital feedback and control mechanisms are useful due to their considerably greater reaction speed, high degree of autonomy, and dependable performance, there exist many applications in which human input is favorable. Our intuitive understanding of the locomotion we wish to accomplish in a given task and innate risk/reward analysis allows us to make decisions with a degree of creativity and complexity that is prohibitively high to provide in all circumstances. In such circumstances, providing a mechansim to translate human control allows for an integration of these aspects with existing control and feedback structures to optimize performance.
 \section{Abstract Design}
 \subsection{Tretrahelix}
+
+
+
 \subsection{Linear Displacement to Cartesian}
 \subsection{The \textit{Turret} Joint}
 
-We employ a novel spherical joint designed by Song et. al. \cite{song2003spherical}, which serves as an effective method for joining linear sections in a tetrahedral configuration while allowing fixed and defined points of rotation. This joint offers a number of unique advantages that make it uniquely suited to our application; its rounded shape makes it an effective gripping tool for the human hand. The ability to alter the geometry of the hole, rotor and shell allows for customizable limits on the range of motion of the device. Most importantly, its removable, two part construction allows for easy addition or removal of single tetrahedra from the larger device, which in conjunction with the modularity of the tetrahedra, allows for a completely customizeable and arbitrary device.        
+We employ a novel spherical joint designed by Song et. al. \cite{song2003spherical}, which serves as an effective method for joining linear sections in a tetrahedral configuration while allowing fixed and defined points of rotation. This joint offers a number of unique advantages that make it uniquely suited to our application; its rounded shape makes it an effective gripping tool for the human hand. The ability to alter the geometry of the hole, rotor and shell allows for customizable limits on the range of motion of the device. Most importantly, its removable, two part construction allows for easy addition or removal of single tetrahedra from the larger device, which in conjunction with the modularity of the tetrahedra, allows for a completely customizeable and arbitrary device.
 \subsection{Related Research}
 
 \section{Method and Embodiment}
@@ -84,7 +109,7 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
 
  [Discuss printed parts, mechanics and dynamics:]
  A controlled flexibility of an otherwise rigid the device,is provided by a spherical joint, invented by Song, Kwon, and Kim [?], depicted conceptually in (figure?: Song, Kwon, Kim, patent image) and (figure?: Turret Joint Planar Geometry).
- 
+
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{figures/SongKwonKimImage.png}
@@ -99,9 +124,9 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
     \caption[Turret Joint Planar Geometry]{Turret Joint Planar Geometry}
       \label{simplified-constraint-drawing}
 \end{figure}
- 
+
  The  multiplexers send data from the (exact number?) sensors at near real-time to our processing unit, an Arduino Uno microcontroller, which provides 5V supply, ground, analog inputs, and digital control outputs to each of the multiplexers, and streams the data from each sensor via (bluetooth?) to an external location which can create a virtual reconstruction of the device, or further send data to a corresponding robot to be controlled. The use of multiplexers allows the singals from the potentiometers to be read together with little delay time between readings. The result of this system is the ability to precisely match the movement of the controller by a robot receiving the data. We have demonstrated this in (figure?: Screenshot of live visualization of the TetraCon using Dr. Read's software) and in (link?: video of Tetrobot being operated using TetroCon).
-     
+
 \subsection{System Design}
 \section{Applications and Uses}
 \subsection{Animation and Shaping}
@@ -111,16 +136,16 @@ The human body, containing organ systems that are comprised of narrow fluidic ch
 
  In the context of rehabilation and external applications, a key benefit of the device is its hollow structure, meant to aid in its actuation but instead used to form around limbs and appendeges.In this way, the device can offer greater accuracy than traditional over-the-arm sensors in force and torque measurements while not impeding movement or blood flow by restrictively binding against the skin as do many rehabilitative exoskeletons. Once placed around a patient's limb, the device can be conformed to the shape of the limb and displacements in the sensors in response to various movements can be correlated to force and torque measurements to provide important feedback regarding the patient's musculoskeletal function.
 
- Telepresence robots in use in operating rooms where surgery by conventional methods is prohibitively expensive or dangerous allow operators to conduct procedures that would otherwise be impractical with simplicity and ease by positioning and manipulating end effectors with graphical user interfaces. Their complexity and versatility make them ideal partners for physicans and surgeons doing complicated surgical procedures without the instability, lack of precision and latency in response time inherent in the manipulation of surgical tools by human hands. The TetraCon can offer the advantage of being flexible enough to allow complex maneuvers to be conducted quickly, while still reducing the instability of direct human involvement by shifting its axis of orientation to accomodate rapid movements. 
+ Telepresence robots in use in operating rooms where surgery by conventional methods is prohibitively expensive or dangerous allow operators to conduct procedures that would otherwise be impractical with simplicity and ease by positioning and manipulating end effectors with graphical user interfaces. Their complexity and versatility make them ideal partners for physicans and surgeons doing complicated surgical procedures without the instability, lack of precision and latency in response time inherent in the manipulation of surgical tools by human hands. The TetraCon can offer the advantage of being flexible enough to allow complex maneuvers to be conducted quickly, while still reducing the instability of direct human involvement by shifting its axis of orientation to accomodate rapid movements.
 
 \subsubsection{Extra-terrestrial robot manipulation}
 
 The need for a more intuitive and organic telepresence operator in the field of extraterrestrial exploration is evident in the current state of such control mechanisms; Robotic arms mounted on orbiting structures are often operated by telepresence controllers with limited physical similarities to their counterparts. The presence of organic control in such mechanisms might signficantly reduce the lead-time necessary to train operators using these controllers and improve their versatility in the field. Further, the counterparts of such mechanisms could be made more agile in response to this development, where less lag between operation of a controller and a robot can be established by reducing the complexity of having to translate between 2 dimensional coordinate refernce frames of controllers to 3 dimensional reference frames of the controllee; if the robot being controlled is physically analogous to the controller, less effort is required to translate the movements of the controller to the robot.
 
-Snake-like robots are highly advantages for extra-terrestrial navigation as well, given the non-uniform terrain that must be navigated on other planetary bodies. The TetraCon presents an advantage in this field in that it is already well-suited for the control and operaiton of such robots by the nature of its design. [examples:] 
+Snake-like robots are highly advantages for extra-terrestrial navigation as well, given the non-uniform terrain that must be navigated on other planetary bodies. The TetraCon presents an advantage in this field in that it is already well-suited for the control and operaiton of such robots by the nature of its design. [examples:]
 \subsubsection{Tetrobot Telepresence Controller}
 
-The Tetrobot, an initial concept proposed by... [pull from Rob's section] 
+The Tetrobot, an initial concept proposed by... [pull from Rob's section]
 \section{Future Work}
 \subsubsection{Reuse of current open-source code and models}
 \subsubsection{Camera-based direct Cartesian Sensing}
