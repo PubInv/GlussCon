@@ -64,7 +64,7 @@ Avinash Baskaran
 
 \begin{abstract}
 
-	Humans are skillful. By building a bio-inspired manipulable snake-like controller that can be molded into a wide variety of shapes, we allow a human controller to telepresently specify complex shapes and shape changes. We constructed a tetrahelix consisting of seven tetrahedron made of adjustable-length members connected via 3D printed Song-Kwon-Kim joints which allow manual changes to the shape of the controller. These changes in length are digitized and organized via an Arduino and transmitted to more power computers where they may specify a shape to be animated or control a robot of similar shape, or simply specify relative positions in Cartesian space. Although this research is basic, we hope it will eventually amplify human control of in vivo mechanical devices such as endoscopes, search-and-rescue robots weaseling into tight spaces, or general purpose tetrobots used for planetary space exploration as suggested by Prof. Sanderson and his students 20 years ago.s
+	Humans are skillful. By building a bio-inspired manipulable snake-like controller that can be molded into a wide variety of shapes, we allow a human controller to telepresently specify complex shapes and shape changes. We constructed a tetrahelix consisting of seven tetrahedron made of adjustable-length members connected via 3D printed Song-Kwon-Kim joints which allow manual changes to the shape of the controller. These changes in length are digitized and organized via an Arduino and transmitted to more power computers where they may specify a shape to be animated or control a robot of similar shape, or simply specify relative positions in Cartesian space. Although this research is basic, we hope it will eventually amplify human control of in vivo mechanical devices such as endoscopes, search-and-rescue robots weaseling into tight spaces, or general purpose tetrobots used for planetary space exploration as suggested by Prof. Sanderson and his students 20 years ago.
 
 \end{abstract}
 
@@ -84,8 +84,7 @@ We have designed and implemented such an interface [reference video]
 \section{Abstract Design}
 \subsection{Tretrahelix}
 
-[motivate the choice of a tetrahelix controller structure]
-
+The TetroCon is isomorphic to a Boerdijk-Coxeter (BC) helix, which is composed only of tetrahedra, meaning that its structure is inherently rigid, and the  helical nature of the BC helix imparts a cylindrical, tubular structure to the device which cannot be maintained by most other similarly shaped geometric constructions. The conjunction of this unique geometry and the incorporation of edges of variable length, allow for the control of any basically tubular or snake-like virtual or physical robot by digitally reconstructing and conveying the configuration of the controller.
 
 \subsection{Linear Displacement to Cartesian}
 
@@ -99,10 +98,15 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
 [Summarize prof. Sanderson's work, others? explain why our's is more advantageous]
 
 \section{Method and Embodiment}
-
 \subsection{Linear Potentiometers}
-\subsection{3D Printred parts}
-\subsection{Microelectronics}
+
+Sliding potentiometers, the analog output of which can be used to calculate the physical location of a 'wiper', were used to compute the geometry and configuration of the device at any given time. Such potentiometers were snap-fitted into sliding sleeves as shown in figure ?, and act as varying-length segments for each tetrahedron, capable of reacting to forces enacted by the user on controller to change its overall configuration.
+
+\subsection{3D Printed parts}
+
+The sliding sleeves and Song-Kwon-Kim joints comprising the device were entirely fabricated using 3D printers, as shown in figure [?]. ABS plastic (is this correct?) was selected for its inherent rigidity, robustness, and relatively low-cost, as it was our desire to preserve the reproducibility of the device. 
+
+  \subsection{Microelectronics}
  \begin{enumerate}
  \item Mechanism
  \item Housing
@@ -110,10 +114,9 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
  \item Wireless communication
  \end{enumerate}
 
- The controller consists of an array of tetrahedrally arranged linear potentiometers embedded within 3D printed sleeve components, which comprise the device's physical framework. Each linear potentiometer allows for measurements of displacement along a single axis, which allows us to map the movement orientation of each sleeve simply using the analog output of each sensor. Each tetrahedron, groupings of 6 linear potentiometers, forming functional subdividisions of the structure, is provided a voltage input, ground, and signal output chanenel via onboard 8-channel multiplexers mounted to a single sleeve within the corresponding tetrahedron.
+ The controller consists of an array of tetrahedrally arranged linear potentiometers embedded within 3D printed sleeve components, which comprise the device's physical framework. Each linear potentiometer allows for measurements of displacement along a single axis, which allows us to map the movement orientation of each sleeve simply using the analog output of each sensor. The first 2 tetrahedra in the chiral chain of the tetrahelix represent the first 6 potnetioneters wired to an onboard 8-channel multiplexer. Each additional tetrahedron added in the chain required the addition of 3 linear potentiometers.
+ The sensor network was digitally controlled by an Arduino, which digitized the analog signals to construct a JSON string transmitted over its serial port. The JSON is read by a simple Python web server which makes it available as a web request. A Bullet-based simulation [citation needed?] of the TetRobot converts this into a virtual model of the tetrahedral system capable of being transmitted to the physical TetRobot.
 
- [Discuss printed parts, mechanics and dynamics:]
- A controlled flexibility of an otherwise rigid the device,is provided by a spherical joint, invented by Song, Kwon, and Kim [?], depicted conceptually in (figure?: Song, Kwon, Kim, patent image) and (figure?: Turret Joint Planar Geometry).
 
 \begin{figure}[H]
   \centering
@@ -130,7 +133,7 @@ We employ a novel spherical joint designed by Song et. al. \cite{song2003spheric
       \label{simplified-constraint-drawing}
 \end{figure}
 
- The  multiplexers send data from the (exact number?) sensors at near real-time to our processing unit, an Arduino Uno microcontroller, which provides 5V supply, ground, analog inputs, and digital control outputs to each of the multiplexers, and streams the data from each sensor via (bluetooth?) to an external location which can create a virtual reconstruction of the device, or further send data to a corresponding robot to be controlled. The use of multiplexers allows the singals from the potentiometers to be read together with little delay time between readings. The result of this system is the ability to precisely match the movement of the controller by a robot receiving the data. We have demonstrated this in (figure?: Screenshot of live visualization of the TetraCon using Dr. Read's software) and in (link?: video of Tetrobot being operated using TetroCon).
+  We have demonstrated the viability of our system to relay the configuration of the controller and thereby control virtual and physical robots  in (figure?: Screenshot of live visualization of the TetraCon using Dr. Read's software) and in (link?: video of Tetrobot being operated using TetroCon).
 
 \subsection{System Design}
 \section{Applications and Uses}
@@ -150,8 +153,11 @@ The need for a more intuitive and organic telepresence operator in the field of 
 Snake-like robots are highly advantages for extra-terrestrial navigation as well, given the non-uniform terrain that must be navigated on other planetary bodies. The TetraCon presents an advantage in this field in that it is already well-suited for the control and operaiton of such robots by the nature of its design. [examples:]
 \subsubsection{Tetrobot Telepresence Controller}
 
-The Tetrobot, an initial concept proposed by... [pull from Rob's section]
-\section{Future Work}
+ The TetroCon is intentionally isomorphic to the TetRobot. We intend to test the hypothesis that the TetroCon allows a practiced operator to locomote the TetRobot over obstactles and within pipes.
+
+ \section{Future Work}
+
+ 
 \subsubsection{Reuse of current open-source code and models}
 \subsubsection{Camera-based direct Cartesian Sensing}
 
