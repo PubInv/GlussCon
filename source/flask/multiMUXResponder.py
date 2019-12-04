@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import time
 import serial
-ser = serial.Serial('/dev/cu.usbmodem141401',115200,timeout=1)  # open serial port
+ser = serial.Serial('/dev/cu.usbmodem141401',115200,timeout=0.1)  # open serial port
 import time
 import math
 from time import sleep
@@ -16,13 +16,17 @@ CORS(app)
 @app.route("/")
 def getpotval():
   ser.write(b'\n')
+  start_time = time.time()
 #  line = ser.readline()   # read a '\n' terminated line
   lines = ser.readlines()
-  print >> sys.stderr, str(lines)
+  elapsed_time = time.time() - start_time
+  print >> sys.stderr, str(elapsed_time)
+
+#  print >> sys.stderr, str(lines)
   result = ""
   result.join(lines)
   result = ''.join([str(x) for x in lines])
-  print >> sys.stderr, result
+#  print >> sys.stderr, result
   return result
 
 if __name__ == "__main__":
