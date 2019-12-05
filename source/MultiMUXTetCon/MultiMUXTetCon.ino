@@ -69,7 +69,7 @@ void loop()
       for(int j = 0; j < NUM_BOARDS; j++) {
         for(int i = 0; i < NUMBER_OF_CHANNELS_PER_MUX; i++) {
           selectBrdMuxPin(j,i);
-          delay(20);
+  //        delay(2);
           int val;
           val = analogRead(zInput[j]);
           Serial.print("\"");
