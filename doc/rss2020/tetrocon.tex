@@ -1,6 +1,7 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{times}
-
+\usepackage{amsmath}
+\usepackage{gensymb}
 % numbers option provides compact numerical references in the text.
 \usepackage[numbers]{natbib}
 \usepackage{multicol}
@@ -19,7 +20,7 @@
 \begin{document}
 
 % paper title
-\title{The Design and Construction of a Novel Variable-Geometry Snake-like Input Device}
+\title{Controlling a Variable Geometry Truss Tetrobot with an Isomporphic Puppet Controller}
 
 % You will get a Paper-ID when submitting a pdf file to the conference system
 \author{Author Names Omitted for Anonymous Review. Paper-ID [add your ID here]}
@@ -55,7 +56,7 @@ tensegrities has been well researched \citet{TetrobotBook,NTRT,paul2006,chen2017
 It is possible to construct a variable geometry truss out of actuators
 using tetrahedra as a repeated module that might be expected to have
 an advantageous strength-to-weight ratio \citet{mikulas1985sequentially,mirletz2014}.
-The existence of the Boerdijk-Coxeter tetrahelix\citet{coxeter1985simplicial}
+The existence of the Boerdijk-Coxeter tetrahelix \citet{coxeter1985simplicial}
 has long been recognized \citet{fuller1982synergetics,graytetrahelix} as a
 geometric means of composing tetrahedra into long beam, which
 might combine the structural advanatages of a tetrahedral tensegrity with
@@ -93,15 +94,21 @@ By utilizing a 3D-printed jointing system
  support either tensile or compressive loads, or both.
  No member has to resist angular displacement.
  Tensegrities usually use cables for the tensile compoments and rods
- for the compessive components. Tensegritie robots vary the length of one or
+ for the compessive components. Tensegrity robots vary the length of one or
  the other.
  Since a cable attached to a point can pull in any direction, the tensegrity
  condition is achieved by attaching rods only to cables, not other rods.
 
- However, \citet{HamlinSandersonCMS} produced a novel concentric
- multilink spherical joint based on parallelograms. Somewhat later
+  However, \citet{HamlinSandersonCMS} produced a novel concentric
+  multilink spherical joint based on parallelograms. Such joints allow the
+  construction of tensegrities without cables (or, equivalently, where the
+  cable length has shrunk to zero.)
+
+ \subsection{The Song-Kwon-Kim Concentric Multimember Joint}
+
+ Somewhat later
  \citet{song2003spherical} patented a modification of a ball-and-socket
- joint which is rougly similar. 3D printing makes the construction of
+ joint which is roughly similar. 3D printing makes the construction of
  Song-Kwon-Kim joint practical and inexpensive, though it is not necssarily
  superior.
 
@@ -110,36 +117,54 @@ By utilizing a 3D-printed jointing system
  If those rods can change length on their own power, they form a
  machine or robot. If those rods can be changed by external forces,
  the form an input device.
- If you build both, you can have robot which mimics a simularcum or
- puppet controller you can shape with your hands.
+ If you build both, you can have robot \ref{fig:7tetrobot} which mimics a simulacrum or
+ puppet controller \ref{fig:7tetrocontroller} you can shape with your hands.
 
- \subsection{The Controller}
+ \subsection{The Lock Component Designed for a Tetrahelix}
 
- The tetrocon device uses 3D printed Song-Kwon-Kim joints. The holes in
- the locking shell of this joint are centered so as to mimic a tetrahelix
- (slightly different configuration would be needed for other configurations.)
- So long as the ratio of maximum to minimum displacement of a member does not
- exceed the golden ratio ($\frac{\sqrt{5} + 1}/2$), the joint does moves
- freely and does not break.
+ In a Song-Kwon-Kim style joint, a spherical lock holds rotors in place. The placement of
+ the holes for the rotors depends on the geometry of the robot one is trying to create.
+ For tetrahedral tensegrities wherein the the ratio of the maximum length of an actuator to the
+ minimum does not exceed the inverse of the golden ratio, the holes can be placed so
+ that all configurations are possible. That is, the robot can never break itself by
+ attempting to move into an unattainable configuration.
 
- Linear potentiometers serve as linear dispacement sensors.
- These sensors are held in snap-together 3D printed sleeves, which have
- female parts to receive our universal jointing system. The entire
- system is modular, in the sense that every joint and
- every member is precisely the same.
- It snaps apart easily but is easy to repair.
 
- Electronically, each of six potentiometers (forming a two-tetrahedra
- modular extention) is connected to a multiplexer, which controllers
- which signal is sent to an Arduino Uno microcontroller. This allows
- the 24 displacment sensors in a 7-tetrahedron controller to be
- digitized. A simple program returns all values upon request in
- JSON.
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/JointAssemblyWithRotor.png}
+    \caption[Exploded view of Song-Kwon-Kim Joint]{Exploded view of Song-Kwon-Kim Joint}
+      \label{fig:JointAssemblyWithRotor}
+\end{figure}
 
- A Python program implements a webserver, which allows other software
- to query the state of the 24 channels in the controller simply by
- making a web request.
+ This relies on making the spherical part of the rotor in contact with the ball triangle.
+ Making the the rotor trianglular lets the hole the shaft penetrates be made larger,
+ allowing a greater angular displacement. So long as the rotors can revolve, then in
+ the tighter configuration the rotors meet edge-to-edge.  This has the further advantage
+ of strenthenging the points of contact with the lock when in tension.
 
+ \subsection{A Universal Rotor}
+
+
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/UniversalRotor.png}
+    \caption[A Universal Rotor with a Triangular Face]{A Universal Rotor with a Triangular Face}
+      \label{fig:UniversalController}
+\end{figure}
+
+ Early prototypes of our version of the joint connected the actuator to a rotor in a way
+ that was difficult to disconnect. We have replaced this with a standard, or universal,
+ rotor shape. The universal rotor has a hole which allows it to be detached from the
+ sensor or actuator connected to it by removing a zip tie or a bolt.
+
+ The result is that the joint itself does not have to be taken apart to repair an actuator
+ or displacement sensor.
+ This has been a great help in the maintenance of the robot.
+
+ In our construction of the robot, we found it necessary to make some pieces of the joint
+ out of metal, whereas on the smaller and less force-oriented scale of the controller the
+ same parts were servicable when 3D printed in plastic.
 
 
 
@@ -162,10 +187,229 @@ By utilizing a 3D-printed jointing system
 
 
 
+ \subsection{The Controller}
+
+ The tetrocon device uses 3D printed Song-Kwon-Kim joints. The holes in
+ the locking shell of this joint are centered so as to mimic a tetrahelix
+ (slightly different configuration would be needed for other configurations.)
+ So long as the ratio of maximum to minimum displacement of a member does not
+ exceed the golden ratio ($\frac{\sqrt{5} + 1}/2$), the joint does moves
+ freely and does not break.
+
+ Linear potentiometers serve as linear dispacement sensors.
+ These sensors are held in snap-together 3D printed sleeves, which have
+ female parts to receive our universal jointing system. The entire
+ system is modular, in the sense that every joint and
+ every member is precisely the same.
+ It snaps apart easily but is easy to repair.
+
+ Because the controller is meant to be moved by hand through its range of
+ operation with minial forces, we have found 3D-printed plastic parts acceptable,
+ although occasional we have a layer sepration break with our rotors.
+
+ Electronically, each of six potentiometers (forming a two-tetrahedra
+ modular extention) is connected to a multiplexer, which controllers
+ which signal is sent to an Arduino Uno microcontroller. This allows
+ the 24 displacment sensors in a 7-tetrahedron controller to be
+ digitized. A simple program returns all values upon request in
+ JSON.
+
+ A Python program implements a webserver, which allows other software
+ to query the state of the 24 channels in the controller simply by
+ making a web request.
+
+ \subsection{The 7-Tet Tetrobot}
+
+The 7-Tet Tetrobot, hereinafter simply called the tetrobot,
+uses electromechanical actuators with a long lead screw driven by a small
+rotary motor. The can exert 50 Newtons (11 pounds) of force, while weighing only a few hundred grams.
+
+The tetrobot consists of four modules independent, each having (and carrying) a 12V NiMH battery, by far
+the heaviest component of the robot. Thus in theory the tetrobot is expandable to any number of modules
+while remaining untethered. Each modules control six actuators, so the addition of a new module adds
+two more tetrahedra to the system. Each module has a Bluetooth radio on a custom Arduino Mega shield,
+along with three two-channel motor controllers. The Arduino runs code which accepts commands to change
+the length of members via Bluetooth. These commands are submitted by and Emacs electric lisp programmer,
+making it convenient for an operator to issue commands in an Emacs lisp buffer.
+
+The case to hold the battery and controller for each module is 3D printed with an orifice allowing
+it to be mounted on the fixed part of an actuator.
+
+In the tetrobot, the universal rotor is made by 3D printed steel ordered from Shapeways. Each
+end of an actuator is bolted to an universal rotor. We attempted to attach the pushrod to the
+universal rotor with a 3D printed plastic part, but found it necessary to move to an aluminum part.
+A local machinist made the threaded pushrod connectors for us. The other end of the actuator is
+larger and less prone to buckling forces, and we have so far been successful with plastic parts there.
+
+The shell and ball of the Song-Kwon-Kim joint in fact is under very little force, and 3D printed
+plastic parts have been acceptable. However, our current design requires the shell to be bolted
+to a cap, and the bolts are prominent. When on the ground, they tend to catch and produce uneven
+forces. We intend to move to a low-profile design soon.
+
+
+ \section{Use of Controller with Tetrobot}
+
+ \subsection{End-effector positioning}
+
+ The simplest task for any robot that is capable of it is to position
+ an end-effector in space. By orienting the tetrocon to match
+ the physical position of the tetrobot, volunteers from an audience
+ with zero experience can easily cause the first joint of the tetrobot
+ to hit a positioned object after a few seconds of orientation.
+
+ In a sesne this is a simulation of a robot ``arm'' that does not
+ support locomotion.
+
+ \subsection{Locomotion}
+
+ A variable geometry truss wherein each element can change length
+ has high input dimensionality; the 7-tet tetrobot has 24 actuators.
+ The authors have previously explored developing gaits using a
+ a virtual model of the tetrobot. This system used the ammo
+ physics engine to simulate gravity. The basic goal to position
+ six joints on the ground and then move one joint at a time,
+ similar to a hexapodal gait on a robot with legs. Although
+ some progress was made, the complexity of the software and
+ physics simulation had many limitations.
+
+ The controller, operating without the tetrobot,
+ allowed us in a single hour to develop a set
+ of thirteen positions which allows the robot to move forward
+ on a smooth surface fairly effectively. As one might expect
+ for a crawling robot, it was slow---approximately 4 inches
+ per series of 13 poses, or approximately 4 inches per second
+ (need to remeasuer precisely.)
+
+ We also were able to create a set of poses that accomplished
+ a 45 degree turn with the same ease. The tetrobot turns 45\degree in
+ TBD minutes.
+
+ However, when we were able to use the tetrobot with the tetrocon
+ controller and see the effect of the robot position change directly
+ within one or two seconds of changine the controller, we found we
+ were much better able to intuitively develop motions for the robot.
+ We discovered a more efficient ``inchworming'' gait which proved
+ practical with two hours of experimentation. When recorded and
+ replayed, this gait allows the tetrobot to move forward at TBD
+ inches per minute.
+
+ \subsection{Obstacle Confrontation}
+
+ Unlike most wheeled vehicles and robots, the tetrobot might be able
+ to climb over an obstacle of significant size compared to
+ its own size. Operating in complex environments in a theoretic
+ advantage of snake-like or tentacle-like robots.
+
+ After successfully developing inchworming and turning gaits on
+ flat terrain, we attacked the problem of climbing over a simple rectangular
+ obstacle.  After practicing, we were able to manually control the
+ tetrobot to climb over a 2''x2'' obstacle in TBD minutes. We then
+ tested climbing over a 4''x4'' obstacle, and after TBD minutes of practice,
+ were able to do it in TBD minutes. Finally, we attempted a 6''x6'' obstacle,
+ and found TBD.
+
+ \subsection{Summary of Locomotions}
+
+\begin{table}[ht]
+\caption{Locomotion Development} % title of Table
+\centering % used for centering table
+\begin{tabular}{c c c c} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+Locomotion & Practice Time & Motion Performance \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+Inchworm Gait & 1.5 hours & X cm / minute \\ % inserting body of the table
+Turn CW & 0.5 hours & X \degree / minute \\
+Turn CCW & 0.5 hours & X \degree / minute \\
+Cross 2x2 board & TBD hours & TBD minutes \\
+Cross 4x4 board & TBD hours & TBD minutes \\
+Cross 6x6 board & TBD hours & TBD minutes \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:nonlin} % is used to refer this table in the text
+\end{table}
+
+
+ \section{Future Work: Virtual Control}
+
+ Because the shape of a tetrahedron is completely determined by
+ the length of its sides, it is possible to completely reconstruct
+ the shape of the controller from its input. Software to do so
+ is available on our site \citet{anonymous}.
+
+ Becasue a tetrahelix is basically cylindrical or tentacle-like in
+ shape, one can use the tetrocon to define a wide variety of shapes
+ in space.  In fact the tetrocon supports a certain amount of size
+ or thickenss information as well.  However, if valuable, you could
+ consider only the centroid of each tetrahedron and thereby have
+ a hand-manipulated specifier of curves in 3D Cartesian space.
+
+ Thus any robot which is somewhat tentacle-like in shape could
+ be controlled by the tetrocon. Since the tetrocon is modular,
+ the length, in terms of the number of tetrahedra, is essentially
+ unlimited. In practice, it becomes difficult to hold an object
+ with too many tetrahedra. Our controller currently suffers
+ from not offering enough resistance to change in displacemnt.
+ That is, it is easy to move it into any position with the hands,
+ but the potentiometers slide so easily that gravity may pull it
+ back to the table of cause it to sag between your hands.
+
 \section{Conclusion}
 \label{sec:conclusion}
 
-The conclusion goes here.
+The use of a hand-manipulable controller that is the same shape
+as the controlled robot allowed a complex tetrobot to be effectively
+telepresently
+controlled to develop programmable gaits and allowed a human
+robot pilot to overcome obstacles with relative ease.
+
+\section{Gait Speeds}
+Inchworm:
+Trial 0:
+Node E begun on the starting line.
+Time:  32.99 s
+Travel: 12.5 cm
+
+Trial 1:
+Configuration resting configuration from inchworm.
+Time: 34.17 s
+Travel: 11 cm
+
+Trial 2:
+Time: 33.31
+Travel: 11 cm
+
+Conwalk:
+Trial 0:
+Node E begun on the starting line.
+Time: 57.65
+Travel: 10 cm
+
+Trial 1:
+Configuration resting configuration from inchworm.
+Time: 55.04
+Travel: 12 cm
+
+Trial 2:
+Time: 54.43
+Travel: 6 cm : Note, locked against seam.
+
+Tripod:
+Trial 0:
+Node E begun on the starting line.
+Time: 57.65
+Travel: 10 cm
+
+Trial 1:
+Configuration resting configuration from inchworm.
+Time: 55.04
+Travel: 12 cm
+
+Trial 2:
+Time: 54.43
+Travel: 6 cm : Note, locked against seam.
+
+
 
 \section*{Acknowledgments}
 
