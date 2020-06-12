@@ -1,21 +1,19 @@
 % !TEX TS–program = pdflatexmk
 \documentclass[conference]{article}
+\usepackage[backend=biber]{biblatex}
 \usepackage{times}
 \usepackage{amsmath}
 \usepackage{gensymb}
-% numbers option provides compact numerical references in the text.
-\usepackage[numbers]{natbib}
 \usepackage{multicol}
 \usepackage[bookmarks=true]{hyperref}
+
+\usepackage[autostyle]{csquotes}
+
+\addbibresource{references.bib}
 
 \usepackage{graphicx}
 
 \pdfinfo{
-   /Author (Homer Simpson)
-   /Title  (Robots: Our new overlords)
-   /CreationDate (D:20101201120000)
-   /Subject (Robots)
-   /Keywords (Robots;Overlords)
 }
 
 \begin{document}
@@ -23,8 +21,8 @@
 % paper title
 \title{Controlling a Variable Geometry Truss Tetrobot with an Isomporphic Puppet Controller}
 
-% You will get a Paper-ID when submitting a pdf file to the conference system
-\author{Author Names Omitted for Anonymous Review. Paper-ID [add your ID here]}
+
+\author{}
 
 
 
@@ -52,20 +50,20 @@
 \section{Introduction}
 
 The possibility of building a robot based on tetrahedra constructed of
-tensegrities has been well researched \citet{TetrobotBook,NTRT,paul2006,chen2017soft}.
+tensegrities has been well researched \cite{TetrobotBook,NTRT,paul2006,chen2017soft}.
 It is possible to construct a variable geometry truss out of actuators
 using tetrahedra as a repeated module that might be expected to have
-an advantageous strength-to-weight ratio \citet{mikulas1985sequentially,mirletz2014}.
-The existence of the Boerdijk-Coxeter tetrahelix \citet{coxeter1985simplicial}
-has long been recognized \citet{fuller1982synergetics,graytetrahelix} as a
+an advantageous strength-to-weight ratio \cite{mikulas1985sequentially,mirletz2014}.
+The existence of the Boerdijk-Coxeter tetrahelix \cite{coxeter1985simplicial}
+has long been recognized \cite{fuller1982synergetics,graytetrahelix} as a
 geometric means of composing tetrahedra into long beam, which
 might combine the structural advanatages of a tetrahedral tensegrity with
-snake-like robot motion \citet{hirose1993biologically,liljebäck2012snake}.
+snake-like robot motion \cite{hirose1993biologically,lilj2012snake}.
 
 By utilizing a 3D-printed jointing system
  which
  supports angular displacement of multiple members coming to central point
- extending previously patented work \citet{song2003spherical} and small-scale
+ extending previously patented work \cite{song2003spherical} and small-scale
  actuators and microcontrollers, the authors have constructed a relatively
  inexpensive tetrobot. Although some headway has been made in numerical
  control, this papers explores the fundamental idea of using a simulacrum
@@ -88,7 +86,7 @@ By utilizing a 3D-printed jointing system
  \section{Design and Manufacture}
 
  All hardware and software the designs of the controller are free-libre
- open source \citet{anonymous}.
+ open source \cite{anonymous}.
 
  A tensegrity is a device in which each member only supports and has to
  support either tensile or compressive loads, or both.
@@ -99,7 +97,7 @@ By utilizing a 3D-printed jointing system
  Since a cable attached to a point can pull in any direction, the tensegrity
  condition is achieved by attaching rods only to cables, not other rods.
 
-  However, \citet{HamlinSandersonCMS} produced a novel concentric
+  However, \cite{HamlinSandersonCMS} produced a novel concentric
   multilink spherical joint based on parallelograms. Such joints allow the
   construction of tensegrities without cables (or, equivalently, where the
   cable length has shrunk to zero.)
@@ -107,7 +105,7 @@ By utilizing a 3D-printed jointing system
  \subsection{The Song-Kwon-Kim Concentric Multimember Joint}
 
  Somewhat later
- \citet{song2003spherical} patented a modification of a ball-and-socket
+ \cite{song2003spherical} patented a modification of a ball-and-socket
  joint which is roughly similar. 3D printing makes the construction of
  Song-Kwon-Kim joint practical and inexpensive, though it is not necssarily
  superior.
@@ -335,7 +333,7 @@ Cross 6x6 board & TBD hours & TBD minutes \\ [1ex] % [1ex] adds vertical space
  Because the shape of a tetrahedron is completely determined by
  the length of its sides, it is possible to completely reconstruct
  the shape of the controller from its input. Software to do so
- is available on our site \citet{anonymous}.
+ is available on our site \cite{tetrobotplayground}.
 
  Becasue a tetrahelix is basically cylindrical or tentacle-like in
  shape, one can use the tetrocon to define a wide variety of shapes
@@ -428,138 +426,11 @@ Travel: 9 cm
 
 Some people will be thanked after the anonymous review period.
 
-%% Use plainnat to work nicely with natbib.
+\printbibheading
 
-\bibliographystyle{plainnat}
-\bibliography{references}
+\printbibliography
+
+%% \bibliographystyle{plainnat}
+%% \bibliography{references}
 
 \end{document}
-
-
-
-
-
-
-%\author{\authorblockN{Michael Shell}
-%\authorblockA{School of Electrical and\\Computer Engineering\\
-%Georgia Institute of Technology\\
-%Atlanta, Georgia 30332--0250\\
-%Email: mshell@ece.gatech.edu}
-%\and
-%\authorblockN{Homer Simpson}
-%\authorblockA{Twentieth Century Fox\\
-%Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\and
-%\authorblockN{James Kirk\\ and Montgomery Scott}
-%\authorblockA{Starfleet Academy\\
-%San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212\\
-%Fax: (888) 555--1212}}
-
-
-% avoiding spaces at the end of the author lines is not a problem with
-% conference papers because we don't use \thanks or \IEEEmembership
-
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-%
-%\author{\authorblockN{Michael Shell\authorrefmark{1},
-%Homer Simpson\authorrefmark{2},
-%James Kirk\authorrefmark{3},
-%Montgomery Scott\authorrefmark{3} and
-%Eldon Tyrell\authorrefmark{4}}
-%\authorblockA{\authorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: mshell@ece.gatech.edu}
-%\authorblockA{\authorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\authorblockA{\authorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\authorblockA{\authorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-\section{RSS citations}
-
-Please make sure to include \verb!natbib.sty! and to use the
-\verb!plainnat.bst! bibliography style. \verb!natbib! provides additional
-citation commands, most usefully \verb!\citet!. For example, rather than the
-awkward construction
-
-{\small
-\begin{verbatim}
-\cite{kalman1960new} demonstrated...
-\end{verbatim}
-}
-
-\noindent
-rendered as ``\cite{kalman1960new} demonstrated...,''
-or the
-inconvenient
-
-{\small
-\begin{verbatim}
-Kalman \cite{kalman1960new}
-demonstrated...
-\end{verbatim}
-}
-
-\noindent
-rendered as
-``Kalman \cite{kalman1960new} demonstrated...'',
-one can
-write
-
-{\small
-\begin{verbatim}
-\citet{kalman1960new} demonstrated...
-\end{verbatim}
-}
-\noindent
-which renders as ``\citet{kalman1960new} demonstrated...'' and is
-both easy to write and much easier to read.
-
-\subsection{RSS Hyperlinks}
-
-This year, we would like to use the ability of PDF viewers to interpret
-hyperlinks, specifically to allow each reference in the bibliography to be a
-link to an online version of the reference.
-As an example, if you were to cite ``Passive Dynamic Walking''
-\cite{McGeer01041990}, the entry in the bibtex would read:
-
-{\small
-\begin{verbatim}
-@article{McGeer01041990,
-  author = {McGeer, Tad},
-  title = {\href{http://ijr.sagepub.com/content/9/2/62.abstract}{Passive Dynamic Walking}},
-  volume = {9},
-  number = {2},
-  pages = {62-82},
-  year = {1990},
-  doi = {10.1177/027836499000900206},
-  URL = {http://ijr.sagepub.com/content/9/2/62.abstract},
-  eprint = {http://ijr.sagepub.com/content/9/2/62.full.pdf+html},
-  journal = {The International Journal of Robotics Research}
-}
-\end{verbatim}
-}
-\noindent
-and the entry in the compiled PDF would look like:
-
-\def\tmplabel#1{[#1]}
-
-\begin{enumerate}
-\item[\tmplabel{1}] Tad McGeer. \href{http://ijr.sagepub.com/content/9/2/62.abstract}{Passive Dynamic
-Walking}. {\em The International Journal of Robotics Research}, 9(2):62--82,
-1990.
-\end{enumerate}
-%
-where the title of the article is a link that takes you to the article on IJRR's website.
-
-
-Linking cited articles will not always be possible, especially for
-older articles. There are also often several versions of papers
-online: authors are free to decide what to use as the link destination
-yet we strongly encourage to link to archival or publisher sites
-(such as IEEE Xplore or Sage Journals).  We encourage all authors to use this feature to
-the extent possible.
