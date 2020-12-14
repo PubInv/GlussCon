@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import time
 import serial
-ser = serial.Serial('/dev/cu.usbmodem141401',115200,timeout=0.1)  # open serial port
+ser = serial.Serial('/dev/cu.usbmodem142401',115200,timeout=0.1)  # open serial port
 import time
 import math
 from time import sleep
